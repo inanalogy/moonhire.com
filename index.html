@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="MoonHire - Current of Talents That Shines. Expert recruitment, onboarding, and performance assessment services to help you build exceptional teams.">
     <title>MoonHire | Current of Talents That Shines</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Professional color palette inspired by hiring/HR industry */
@@ -38,6 +41,33 @@
             color: var(--text-dark);
             overflow-x: hidden;
             background: var(--bg-white);
+            transition: all 0.3s ease;
+        }
+
+        /* Arabic font support */
+        body[dir="rtl"] {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lang-toggle:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
         /* Header */
@@ -79,6 +109,12 @@
 
         .logo-icon {
             font-size: 2rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
         .nav-links {
@@ -164,6 +200,10 @@
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        [dir="rtl"] .hero-badge {
+            text-transform: none;
         }
 
         .hero h1 {
@@ -287,6 +327,10 @@
             margin-bottom: 1rem;
         }
 
+        [dir="rtl"] .section-label {
+            text-transform: none;
+        }
+
         /* About Section */
         .about {
             background: var(--bg-light);
@@ -373,6 +417,7 @@
             position: absolute;
             top: 0;
             left: 0;
+            right: 0;
             width: 100%;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
@@ -481,6 +526,10 @@
             letter-spacing: 1px;
         }
 
+        [dir="rtl"] .contact-item h3 {
+            text-transform: none;
+        }
+
         .contact-item p {
             font-size: 1.15rem;
             line-height: 1.6;
@@ -516,6 +565,23 @@
             margin-top: 1rem;
         }
 
+        /* Hidden content for other language */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        .lang-content.active.inline {
+            display: inline;
+        }
+
+        .lang-content.active.inline-block {
+            display: inline-block;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .mobile-menu-btn {
@@ -537,8 +603,18 @@
                 box-shadow: var(--shadow-lg);
             }
 
+            [dir="rtl"] .nav-links {
+                left: auto;
+                right: -100%;
+            }
+
             .nav-links.active {
                 left: 0;
+            }
+
+            [dir="rtl"] .nav-links.active {
+                left: auto;
+                right: 0;
             }
 
             .hero h1 {
@@ -610,13 +686,19 @@
                 <span class="logo-icon">✨</span>
                 <span>MOONHIRE</span>
             </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#employers">For Employers</a></li>
-                <li><a href="#candidates">For Candidates</a></li>
-                <li><a href="#contact" class="nav-cta">Get Started</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about"><span class="lang-content en active inline">About</span><span class="lang-content ar inline">من نحن</span></a></li>
+                    <li><a href="#services"><span class="lang-content en active inline">Services</span><span class="lang-content ar inline">الخدمات</span></a></li>
+                    <li><a href="#employers"><span class="lang-content en active inline">For Employers</span><span class="lang-content ar inline">لأصحاب العمل</span></a></li>
+                    <li><a href="#candidates"><span class="lang-content en active inline">For Candidates</span><span class="lang-content ar inline">للباحثين عن عمل</span></a></li>
+                    <li><a href="#contact" class="nav-cta"><span class="lang-content en active inline">Get Started</span><span class="lang-content ar inline">ابدأ الآن</span></a></li>
+                </ul>
+                <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()">
+                    <span class="lang-content en active inline">العربية</span>
+                    <span class="lang-content ar inline">English</span>
+                </button>
+            </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 ☰
             </button>
@@ -626,12 +708,27 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content fade-in-up">
-            <div class="hero-badge">Recruitment • Onboarding • Performance & Assessment</div>
-            <h1>Why Stress Over Hiring?<br>Let Us.</h1>
-            <p class="subtitle">We help you build great teams by finding the perfect talent, streamlining onboarding, and ensuring long-term success through comprehensive performance assessment.</p>
+            <div class="hero-badge">
+                <span class="lang-content en active inline-block">Recruitment • Onboarding • Performance & Assessment</span>
+                <span class="lang-content ar inline-block">التوظيف • الإدماج الوظيفي • تقييم الأداء</span>
+            </div>
+            <h1>
+                <span class="lang-content en active">Why Stress Over Hiring?<br>Let Us.</span>
+                <span class="lang-content ar">لماذا تقلق بشأن التوظيف؟<br>دعنا نساعدك</span>
+            </h1>
+            <p class="subtitle">
+                <span class="lang-content en active">We help you build great teams by finding the perfect talent, streamlining onboarding, and ensuring long-term success through comprehensive performance assessment.</span>
+                <span class="lang-content ar">نساعدك في بناء فرق عمل متميزة من خلال إيجاد الكفاءات المثالية، وتبسيط عملية الإدماج الوظيفي، وضمان النجاح على المدى الطويل من خلال تقييم شامل للأداء.</span>
+            </p>
             <div class="cta-buttons">
-                <a href="#contact" class="cta-button cta-primary">Start Hiring Today</a>
-                <a href="#services" class="cta-button cta-secondary">Explore Services</a>
+                <a href="#contact" class="cta-button cta-primary">
+                    <span class="lang-content en active inline">Start Hiring Today</span>
+                    <span class="lang-content ar inline">ابدأ التوظيف اليوم</span>
+                </a>
+                <a href="#services" class="cta-button cta-secondary">
+                    <span class="lang-content en active inline">Explore Services</span>
+                    <span class="lang-content ar inline">استكشف خدماتنا</span>
+                </a>
             </div>
         </div>
     </section>
@@ -641,56 +738,110 @@
         <div class="stats-grid">
             <div class="stat-item">
                 <h3>100%</h3>
-                <p>Talent Guaranteed</p>
+                <p>
+                    <span class="lang-content en active">Talent Guaranteed</span>
+                    <span class="lang-content ar">ضمان الكفاءات</span>
+                </p>
             </div>
             <div class="stat-item">
-                <h3>Global</h3>
-                <p>Talent Pool</p>
+                <h3>
+                    <span class="lang-content en active">Global</span>
+                    <span class="lang-content ar">عالمي</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Talent Pool</span>
+                    <span class="lang-content ar">مجموعة مواهب</span>
+                </p>
             </div>
             <div class="stat-item">
-                <h3>Fast</h3>
-                <p>Hiring Process</p>
+                <h3>
+                    <span class="lang-content en active">Fast</span>
+                    <span class="lang-content ar">سريع</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Hiring Process</span>
+                    <span class="lang-content ar">عملية التوظيف</span>
+                </p>
             </div>
             <div class="stat-item">
                 <h3>24/7</h3>
-                <p>Support</p>
+                <p>
+                    <span class="lang-content en active">Support</span>
+                    <span class="lang-content ar">دعم</span>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="about">
-        <div class="section-label">We Help You Build Great Teams</div>
-        <h2>Let Us Help You Build Your Team!</h2>
-        <p class="section-subtitle">Recruiting talent is one of the most difficult tasks in any organization. Hiring the wrong people can cause problems for both the company and the individual.</p>
+        <div class="section-label">
+            <span class="lang-content en active">We Help You Build Great Teams</span>
+            <span class="lang-content ar">نساعدك في بناء فرق عمل رائعة</span>
+        </div>
+        <h2>
+            <span class="lang-content en active">Let Us Help You Build Your Team!</span>
+            <span class="lang-content ar">دعنا نساعدك في بناء فريقك!</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="lang-content en active">Recruiting talent is one of the most difficult tasks in any organization. Hiring the wrong people can cause problems for both the company and the individual.</span>
+            <span class="lang-content ar">يُعد توظيف الكفاءات من أصعب المهام في أي مؤسسة. توظيف الأشخاص الخطأ قد يسبب مشاكل للشركة والفرد على حد سواء.</span>
+        </p>
 
         <div class="about-content">
             <div class="about-text">
-                <h3>Mitigate Risks, Maximize Success</h3>
-                <p>One way to mitigate these risks is by doing rigorous candidate assessment before hiring anyone. This will help reduce risks and maximize hiring success.</p>
-                <p>Building your team is one of the most important decisions you'll make as a leader. To build culture and a successful company, you need to find the right people.</p>
+                <h3>
+                    <span class="lang-content en active">Mitigate Risks, Maximize Success</span>
+                    <span class="lang-content ar">تقليل المخاطر، تعظيم النجاح</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">One way to mitigate these risks is by doing rigorous candidate assessment before hiring anyone. This will help reduce risks and maximize hiring success.</span>
+                    <span class="lang-content ar">إحدى طرق تقليل هذه المخاطر هي إجراء تقييم دقيق للمرشحين قبل التوظيف. هذا سيساعد في تقليل المخاطر وتعظيم نجاح عملية التوظيف.</span>
+                </p>
+                <p>
+                    <span class="lang-content en active">Building your team is one of the most important decisions you'll make as a leader. To build culture and a successful company, you need to find the right people.</span>
+                    <span class="lang-content ar">بناء فريقك هو من أهم القرارات التي ستتخذها كقائد. لبناء ثقافة مؤسسية وشركة ناجحة، عليك إيجاد الأشخاص المناسبين.</span>
+                </p>
             </div>
 
             <div class="about-features">
                 <div class="feature-item">
                     <div class="feature-icon">🎯</div>
                     <div class="feature-text">
-                        <h4>Rigorous Assessment</h4>
-                        <p>Comprehensive candidate evaluation to ensure the perfect fit</p>
+                        <h4>
+                            <span class="lang-content en active">Rigorous Assessment</span>
+                            <span class="lang-content ar">تقييم دقيق</span>
+                        </h4>
+                        <p>
+                            <span class="lang-content en active">Comprehensive candidate evaluation to ensure the perfect fit</span>
+                            <span class="lang-content ar">تقييم شامل للمرشحين لضمان التوافق المثالي</span>
+                        </p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">⚡</div>
                     <div class="feature-text">
-                        <h4>Fast & Efficient</h4>
-                        <p>Streamlined hiring process that saves you time and resources</p>
+                        <h4>
+                            <span class="lang-content en active">Fast & Efficient</span>
+                            <span class="lang-content ar">سريع وفعال</span>
+                        </h4>
+                        <p>
+                            <span class="lang-content en active">Streamlined hiring process that saves you time and resources</span>
+                            <span class="lang-content ar">عملية توظيف مبسطة توفر وقتك ومواردك</span>
+                        </p>
                     </div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🌟</div>
                     <div class="feature-text">
-                        <h4>Quality Guaranteed</h4>
-                        <p>We stand behind every placement with our talent guarantee</p>
+                        <h4>
+                            <span class="lang-content en active">Quality Guaranteed</span>
+                            <span class="lang-content ar">جودة مضمونة</span>
+                        </h4>
+                        <p>
+                            <span class="lang-content en active">We stand behind every placement with our talent guarantee</span>
+                            <span class="lang-content ar">نقف وراء كل توظيف بضمان الكفاءات لدينا</span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -699,83 +850,170 @@
 
     <!-- Services Section -->
     <section id="services">
-        <div class="section-label">How We Help You Succeed</div>
-        <h2>Our Services</h2>
-        <p class="section-subtitle">Comprehensive recruitment solutions designed to help you find, assess, and onboard top talent</p>
+        <div class="section-label">
+            <span class="lang-content en active">How We Help You Succeed</span>
+            <span class="lang-content ar">كيف نساعدك على النجاح</span>
+        </div>
+        <h2>
+            <span class="lang-content en active">Our Services</span>
+            <span class="lang-content ar">خدماتنا</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="lang-content en active">Comprehensive recruitment solutions designed to help you find, assess, and onboard top talent</span>
+            <span class="lang-content ar">حلول توظيف شاملة مصممة لمساعدتك في إيجاد وتقييم ودمج أفضل الكفاءات</span>
+        </p>
 
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">🤖</div>
-                <h3>Automation</h3>
-                <p>Streamline your hiring process with cutting-edge automation tools that save time and improve efficiency while maintaining quality.</p>
+                <h3>
+                    <span class="lang-content en active">Automation</span>
+                    <span class="lang-content ar">الأتمتة</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Streamline your hiring process with cutting-edge automation tools that save time and improve efficiency while maintaining quality.</span>
+                    <span class="lang-content ar">بسّط عملية التوظيف باستخدام أدوات الأتمتة المتطورة التي توفر الوقت وتحسن الكفاءة مع الحفاظ على الجودة.</span>
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">📊</div>
-                <h3>Assessment</h3>
-                <p>Comprehensive candidate evaluation using proven assessment methodologies to ensure you hire the right talent every time.</p>
+                <h3>
+                    <span class="lang-content en active">Assessment</span>
+                    <span class="lang-content ar">التقييم</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Comprehensive candidate evaluation using proven assessment methodologies to ensure you hire the right talent every time.</span>
+                    <span class="lang-content ar">تقييم شامل للمرشحين باستخدام منهجيات مثبتة لضمان توظيف الكفاءات المناسبة في كل مرة.</span>
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">🌍</div>
-                <h3>Find Talent Anywhere</h3>
-                <p>Access a global talent pool and find exceptional candidates regardless of location with our worldwide recruitment network.</p>
+                <h3>
+                    <span class="lang-content en active">Find Talent Anywhere</span>
+                    <span class="lang-content ar">ابحث عن الكفاءات في أي مكان</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Access a global talent pool and find exceptional candidates regardless of location with our worldwide recruitment network.</span>
+                    <span class="lang-content ar">احصل على مجموعة مواهب عالمية وابحث عن مرشحين استثنائيين بغض النظر عن الموقع من خلال شبكة التوظيف العالمية لدينا.</span>
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">📢</div>
-                <h3>Awareness</h3>
-                <p>Build your employer brand and attract top talent through strategic awareness campaigns and targeted recruitment marketing.</p>
+                <h3>
+                    <span class="lang-content en active">Awareness</span>
+                    <span class="lang-content ar">التوعية</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Build your employer brand and attract top talent through strategic awareness campaigns and targeted recruitment marketing.</span>
+                    <span class="lang-content ar">بناء علامتك التجارية كصاحب عمل وجذب أفضل الكفاءات من خلال حملات التوعية الاستراتيجية والتسويق الموجه للتوظيف.</span>
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">🛂</div>
-                <h3>Entry Visa</h3>
-                <p>We handle the complexities of visa processing and documentation, making international hiring seamless and stress-free.</p>
+                <h3>
+                    <span class="lang-content en active">Entry Visa</span>
+                    <span class="lang-content ar">تأشيرة الدخول</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">We handle the complexities of visa processing and documentation, making international hiring seamless and stress-free.</span>
+                    <span class="lang-content ar">نتعامل مع تعقيدات معالجة التأشيرات والوثائق، مما يجعل التوظيف الدولي سلساً وخالياً من التوتر.</span>
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">📝</div>
-                <h3>Resources & Insights</h3>
-                <p>Stay informed with our latest insights, best practices, and industry trends to optimize your hiring strategies.</p>
+                <h3>
+                    <span class="lang-content en active">Resources & Insights</span>
+                    <span class="lang-content ar">الموارد والرؤى</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Stay informed with our latest insights, best practices, and industry trends to optimize your hiring strategies.</span>
+                    <span class="lang-content ar">ابق على اطلاع بأحدث الرؤى وأفضل الممارسات واتجاهات الصناعة لتحسين استراتيجيات التوظيف لديك.</span>
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Employers CTA -->
     <section id="employers" class="cta-section">
-        <div class="section-label" style="color: rgba(255, 255, 255, 0.9);">Are You Hiring?</div>
-        <h2>Talents Guaranteed!</h2>
-        <p>Building your team is one of the most important decisions you'll make as a leader. To build culture and a successful company, you need to find the right people.</p>
+        <div class="section-label" style="color: rgba(255, 255, 255, 0.9);">
+            <span class="lang-content en active">Are You Hiring?</span>
+            <span class="lang-content ar">هل تبحث عن موظفين؟</span>
+        </div>
+        <h2>
+            <span class="lang-content en active">Talents Guaranteed!</span>
+            <span class="lang-content ar">كفاءات مضمونة!</span>
+        </h2>
+        <p>
+            <span class="lang-content en active">Building your team is one of the most important decisions you'll make as a leader. To build culture and a successful company, you need to find the right people.</span>
+            <span class="lang-content ar">بناء فريقك هو من أهم القرارات التي ستتخذها كقائد. لبناء ثقافة مؤسسية وشركة ناجحة، عليك إيجاد الأشخاص المناسبين.</span>
+        </p>
         <div class="cta-buttons">
-            <a href="#contact" class="cta-button cta-primary">Post a Job</a>
-            <a href="#services" class="cta-button cta-secondary">Learn More</a>
+            <a href="#contact" class="cta-button cta-primary">
+                <span class="lang-content en active inline">Post a Job</span>
+                <span class="lang-content ar inline">انشر وظيفة</span>
+            </a>
+            <a href="#services" class="cta-button cta-secondary">
+                <span class="lang-content en active inline">Learn More</span>
+                <span class="lang-content ar inline">اعرف المزيد</span>
+            </a>
         </div>
     </section>
 
     <!-- Candidates Section -->
     <section id="candidates" class="candidates">
-        <div class="section-label">Are You Looking for Your Next Adventure?</div>
-        <h2>Find a Job</h2>
-        <p class="section-subtitle">Discover exciting opportunities that match your skills and career goals. Let us help you find your next great role.</p>
+        <div class="section-label">
+            <span class="lang-content en active">Are You Looking for Your Next Adventure?</span>
+            <span class="lang-content ar">هل تبحث عن مغامرتك القادمة؟</span>
+        </div>
+        <h2>
+            <span class="lang-content en active">Find a Job</span>
+            <span class="lang-content ar">ابحث عن وظيفة</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="lang-content en active">Discover exciting opportunities that match your skills and career goals. Let us help you find your next great role.</span>
+            <span class="lang-content ar">اكتشف فرص مثيرة تتناسب مع مهاراتك وأهدافك المهنية. دعنا نساعدك في إيجاد دورك الوظيفي القادم.</span>
+        </p>
 
         <div class="services-grid">
             <div class="service-card">
                 <div class="service-icon">🔍</div>
-                <h3>Job Matching</h3>
-                <p>We connect you with opportunities that align perfectly with your skills, experience, and career aspirations.</p>
+                <h3>
+                    <span class="lang-content en active">Job Matching</span>
+                    <span class="lang-content ar">مطابقة الوظائف</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">We connect you with opportunities that align perfectly with your skills, experience, and career aspirations.</span>
+                    <span class="lang-content ar">نربطك بالفرص التي تتوافق تماماً مع مهاراتك وخبرتك وطموحاتك المهنية.</span>
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">💼</div>
-                <h3>Career Guidance</h3>
-                <p>Receive expert advice and support throughout your job search and career development journey.</p>
+                <h3>
+                    <span class="lang-content en active">Career Guidance</span>
+                    <span class="lang-content ar">التوجيه المهني</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Receive expert advice and support throughout your job search and career development journey.</span>
+                    <span class="lang-content ar">احصل على المشورة والدعم من الخبراء طوال رحلة البحث عن عمل وتطوير مسيرتك المهنية.</span>
+                </p>
             </div>
 
             <div class="service-card">
                 <div class="service-icon">🚀</div>
-                <h3>Growth Opportunities</h3>
-                <p>Access positions at leading companies that offer competitive compensation and career advancement.</p>
+                <h3>
+                    <span class="lang-content en active">Growth Opportunities</span>
+                    <span class="lang-content ar">فرص النمو</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Access positions at leading companies that offer competitive compensation and career advancement.</span>
+                    <span class="lang-content ar">احصل على مناصب في شركات رائدة تقدم رواتب تنافسية وفرص تقدم وظيفي.</span>
+                </p>
             </div>
         </div>
     </section>
@@ -783,36 +1021,92 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="contact-content">
-            <div class="section-label" style="color: rgba(255, 255, 255, 0.8);">Don't Wait</div>
-            <h2>Contact Us For A Free Consult</h2>
-            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">Let's solve problems together. Whether you're hiring or looking for opportunities, we're here to help.</p>
+            <div class="section-label" style="color: rgba(255, 255, 255, 0.8);">
+                <span class="lang-content en active">Don't Wait</span>
+                <span class="lang-content ar">لا تنتظر</span>
+            </div>
+            <h2>
+                <span class="lang-content en active">Contact Us For A Free Consult</span>
+                <span class="lang-content ar">اتصل بنا للحصول على استشارة مجانية</span>
+            </h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">
+                <span class="lang-content en active">Let's solve problems together. Whether you're hiring or looking for opportunities, we're here to help.</span>
+                <span class="lang-content ar">لنحل المشاكل معاً. سواء كنت توظف أو تبحث عن فرص، نحن هنا لمساعدتك.</span>
+            </p>
 
             <div class="contact-info">
                 <div class="contact-item">
-                    <h3>Email</h3>
+                    <h3>
+                        <span class="lang-content en active">Email</span>
+                        <span class="lang-content ar">البريد الإلكتروني</span>
+                    </h3>
                     <p><a href="mailto:info@moonhire.com">info@moonhire.com</a></p>
                 </div>
 
                 <div class="contact-item">
-                    <h3>Get Started</h3>
-                    <p>Free consultation<br>No obligation</p>
+                    <h3>
+                        <span class="lang-content en active">Get Started</span>
+                        <span class="lang-content ar">ابدأ الآن</span>
+                    </h3>
+                    <p>
+                        <span class="lang-content en active">Free consultation<br>No obligation</span>
+                        <span class="lang-content ar">استشارة مجانية<br>بدون التزام</span>
+                    </p>
                 </div>
             </div>
 
             <div style="margin-top: 3rem;">
-                <a href="mailto:info@moonhire.com" class="cta-button cta-primary">Schedule a Consultation</a>
+                <a href="mailto:info@moonhire.com" class="cta-button cta-primary">
+                    <span class="lang-content en active inline">Schedule a Consultation</span>
+                    <span class="lang-content ar inline">حدد موعد استشارة</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p><strong>MoonHire</strong> - Current of Talents That Shines</p>
-        <p class="footer-note">A Division of MoonHire LLC • Helping you build exceptional teams</p>
-        <p style="margin-top: 1.5rem; font-size: 0.9rem;">&copy; 2025 MoonHire. All rights reserved.</p>
+        <p><strong>MoonHire</strong> - <span class="lang-content en active inline">Current of Talents That Shines</span><span class="lang-content ar inline">تيار المواهب الذي يضيء</span></p>
+        <p class="footer-note">
+            <span class="lang-content en active">A Division of MoonHire LLC • Helping you build exceptional teams</span>
+            <span class="lang-content ar">قسم من شركة MoonHire LLC • نساعدك في بناء فرق استثنائية</span>
+        </p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">&copy; 2025 MoonHire. <span class="lang-content en active inline">All rights reserved.</span><span class="lang-content ar inline">جميع الحقوق محفوظة.</span></p>
     </footer>
 
     <script>
+        // Language toggle functionality
+        function toggleLanguage() {
+            const html = document.documentElement;
+            const currentLang = html.getAttribute('lang');
+            const newLang = currentLang === 'en' ? 'ar' : 'en';
+            const newDir = newLang === 'ar' ? 'rtl' : 'ltr';
+
+            // Update HTML attributes
+            html.setAttribute('lang', newLang);
+            html.setAttribute('dir', newDir);
+
+            // Toggle all language content
+            document.querySelectorAll('.lang-content').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            document.querySelectorAll(`.lang-content.${newLang}`).forEach(el => {
+                el.classList.add('active');
+            });
+
+            // Save preference
+            localStorage.setItem('preferredLanguage', newLang);
+        }
+
+        // Load saved language preference on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLanguage');
+            if (savedLang && savedLang !== 'en') {
+                toggleLanguage();
+            }
+        });
+
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
