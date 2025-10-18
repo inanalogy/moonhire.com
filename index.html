@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MoonHire - Current of Talents That Shines. Expert recruitment, onboarding, and performance assessment services to help you build exceptional teams.">
+    <title>MoonHire | Current of Talents That Shines</title>
+    <style>
+        :root {
+            /* Professional color palette inspired by hiring/HR industry */
+            --primary-color: #2563EB;
+            --primary-dark: #1E40AF;
+            --primary-light: #3B82F6;
+            --secondary-color: #10B981;
+            --accent-color: #F59E0B;
+            --dark-bg: #1E293B;
+            --darker-bg: #0F172A;
+            --text-dark: #1E293B;
+            --text-gray: #475569;
+            --text-light: #64748B;
+            --bg-light: #F8FAFC;
+            --bg-white: #FFFFFF;
+            --border-color: #E2E8F0;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--bg-white);
+        }
+
+        /* Header */
+        header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-cta {
+            background: var(--primary-color);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            padding: 0.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #1E40AF 100%);
+            color: white;
+            padding: 180px 2rem 120px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="1.5" fill="white" opacity="0.15"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.35rem;
+            margin-bottom: 2.5rem;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .cta-primary {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--dark-bg);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .stats-grid {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-label {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-text p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 2rem;
+            border-radius: 24px;
+            margin: 100px 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Candidates Section */
+        .candidates {
+            background: var(--bg-light);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem 2.5rem;
+            border-radius: 16px;
+            min-width: 280px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .contact-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-item p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            color: #6B7280;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #4B5563;
+            margin-top: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                align-items: flex-start;
+                transition: left 0.3s ease;
+                box-shadow: var(--shadow-lg);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 60px 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .cta-section {
+                margin: 60px 1rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">
+                <span class="logo-icon">✨</span>
+                <span>MOONHIRE</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#employers">For Employers</a></li>
+                <li><a href="#candidates">For Candidates</a></li>
+                <li><a href="#contact" class="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                ☰
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content fade-in-up">
+            <div class="hero-badge">Recruitment • Onboarding • Performance & Assessment</div>
+            <h1>Why Stress Over Hiring?<br>Let Us.</h1>
+            <p class="subtitle">We help you build great teams by finding the perfect talent, streamlining onboarding, and ensuring long-term success through comprehensive performance assessment.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-button cta-primary">Start Hiring Today</a>
+                <a href="#services" class="cta-button cta-secondary">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>100%</h3>
+                <p>Talent Guaranteed</p>
+            </div>
+            <div class="stat-item">
+                <h3>Global</h3>
+                <p>Talent Pool</p>
+            </div>
+            <div class="stat-item">
+                <h3>Fast</h3>
+                <p>Hiring Process</p>
+            </div>
+            <div class="stat-item">
+                <h3>24/7</h3>
+                <p>Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-label">We Help You Build Great Teams</div>
+        <h2>Let Us Help You Build Your Team!</h2>
+        <p class="section-subtitle">Recruiting talent is one of the most difficult tasks in any organization. Hiring the wrong people can cause problems for both the company and the individual.</p>
+
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Mitigate Risks, Maximize Success</h3>
+                <p>One way to mitigate these risks is by doing rigorous candidate assessment before hiring anyone. This will help reduce risks and maximize hiring success.</p>
+                <p>Building your team is one of the most important decisions you'll make as a leader. To build culture and a successful company, you need to find the right people.</p>
+            </div>
+
+            <div class="about-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <h4>Rigorous Assessment</h4>
+                        <p>Comprehensive candidate evaluation to ensure the perfect fit</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-text">
+                        <h4>Fast & Efficient</h4>
+                        <p>Streamlined hiring process that saves you time and resources</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🌟</div>
+                    <div class="feature-text">
+                        <h4>Quality Guaranteed</h4>
+                        <p>We stand behind every placement with our talent guarantee</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="section-label">How We Help You Succeed</div>
+        <h2>Our Services</h2>
+        <p class="section-subtitle">Comprehensive recruitment solutions designed to help you find, assess, and onboard top talent</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>Automation</h3>
+                <p>Streamline your hiring process with cutting-edge automation tools that save time and improve efficiency while maintaining quality.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Assessment</h3>
+                <p>Comprehensive candidate evaluation using proven assessment methodologies to ensure you hire the right talent every time.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌍</div>
+                <h3>Find Talent Anywhere</h3>
+                <p>Access a global talent pool and find exceptional candidates regardless of location with our worldwide recruitment network.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📢</div>
+                <h3>Awareness</h3>
+                <p>Build your employer brand and attract top talent through strategic awareness campaigns and targeted recruitment marketing.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🛂</div>
+                <h3>Entry Visa</h3>
+                <p>We handle the complexities of visa processing and documentation, making international hiring seamless and stress-free.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📝</div>
+                <h3>Resources & Insights</h3>
+                <p>Stay informed with our latest insights, best practices, and industry trends to optimize your hiring strategies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Employers CTA -->
+    <section id="employers" class="cta-section">
+        <div class="section-label" style="color: rgba(255, 255, 255, 0.9);">Are You Hiring?</div>
+        <h2>Talents Guaranteed!</h2>
+        <p>Building your team is one of the most important decisions you'll make as a leader. To build culture and a successful company, you need to find the right people.</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="cta-button cta-primary">Post a Job</a>
+            <a href="#services" class="cta-button cta-secondary">Learn More</a>
+        </div>
+    </section>
+
+    <!-- Candidates Section -->
+    <section id="candidates" class="candidates">
+        <div class="section-label">Are You Looking for Your Next Adventure?</div>
+        <h2>Find a Job</h2>
+        <p class="section-subtitle">Discover exciting opportunities that match your skills and career goals. Let us help you find your next great role.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Job Matching</h3>
+                <p>We connect you with opportunities that align perfectly with your skills, experience, and career aspirations.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Career Guidance</h3>
+                <p>Receive expert advice and support throughout your job search and career development journey.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Growth Opportunities</h3>
+                <p>Access positions at leading companies that offer competitive compensation and career advancement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-content">
+            <div class="section-label" style="color: rgba(255, 255, 255, 0.8);">Don't Wait</div>
+            <h2>Contact Us For A Free Consult</h2>
+            <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.8);">Let's solve problems together. Whether you're hiring or looking for opportunities, we're here to help.</p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@moonhire.com">info@moonhire.com</a></p>
+                </div>
+
+                <div class="contact-item">
+                    <h3>Get Started</h3>
+                    <p>Free consultation<br>No obligation</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="mailto:info@moonhire.com" class="cta-button cta-primary">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>MoonHire</strong> - Current of Talents That Shines</p>
+        <p class="footer-note">A Division of MoonHire LLC • Helping you build exceptional teams</p>
+        <p style="margin-top: 1.5rem; font-size: 0.9rem;">&copy; 2025 MoonHire. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
