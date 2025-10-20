@@ -7,7 +7,7 @@
     <title>MoonHire | Current of Talents That Shines</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Professional color palette inspired by hiring/HR industry */
@@ -44,9 +44,18 @@
             transition: all 0.3s ease;
         }
 
-        /* Arabic font support */
+        /* Arabic font support - IBM Plex Sans Arabic for better readability */
         body[dir="rtl"] {
-            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 400;
+        }
+
+        body[dir="rtl"] h1,
+        body[dir="rtl"] h2,
+        body[dir="rtl"] h3,
+        body[dir="rtl"] h4 {
+            font-weight: 600;
+            letter-spacing: 0;
         }
 
         /* Language Toggle */
@@ -676,6 +685,243 @@
         .fade-in-up {
             animation: fadeInUp 0.6s ease-out;
         }
+
+        /* How It Works Section */
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .process-step p {
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 4rem;
+            color: var(--primary-light);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        [dir="rtl"] .testimonial-card::before {
+            left: auto;
+            right: 1.5rem;
+        }
+
+        .testimonial-text {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .author-info h4 {
+            color: var(--text-dark);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: white;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+
+        [dir="rtl"] .faq-question {
+            text-align: right;
+        }
+
+        .faq-question:hover {
+            background: var(--bg-light);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        [dir="rtl"] .faq-icon {
+            margin-left: 0;
+            margin-right: 1rem;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-answer-content {
+            padding: 0 2rem 1.5rem 2rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Trust Badges Section */
+        .trust-section {
+            background: var(--bg-light);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .trust-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trust-badge-icon {
+            font-size: 2.5rem;
+        }
+
+        .trust-badge p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -938,6 +1184,72 @@
         </div>
     </section>
 
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="about">
+        <div class="section-label">
+            <span class="lang-content en active">Simple & Effective Process</span>
+            <span class="lang-content ar">عملية بسيطة وفعالة</span>
+        </div>
+        <h2>
+            <span class="lang-content en active">How It Works</span>
+            <span class="lang-content ar">كيف نعمل</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="lang-content en active">Our streamlined recruitment process ensures you get the best talent quickly and efficiently</span>
+            <span class="lang-content ar">عملية التوظيف المبسطة لدينا تضمن حصولك على أفضل الكفاءات بسرعة وكفاءة</span>
+        </p>
+
+        <div class="process-steps">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>
+                    <span class="lang-content en active">Tell Us Your Needs</span>
+                    <span class="lang-content ar">أخبرنا باحتياجاتك</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Share your hiring requirements, company culture, and ideal candidate profile with our team.</span>
+                    <span class="lang-content ar">شارك متطلبات التوظيف، ثقافة شركتك، والملف الشخصي المثالي للمرشح مع فريقنا.</span>
+                </p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>
+                    <span class="lang-content en active">We Find Top Talent</span>
+                    <span class="lang-content ar">نجد أفضل الكفاءات</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Our experts source, screen, and assess candidates from our global talent pool using proven methodologies.</span>
+                    <span class="lang-content ar">خبراؤنا يبحثون ويفحصون ويقيمون المرشحين من مجموعة المواهب العالمية باستخدام منهجيات مثبتة.</span>
+                </p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>
+                    <span class="lang-content en active">Interview & Select</span>
+                    <span class="lang-content ar">المقابلة والاختيار</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">Review pre-qualified candidates, conduct interviews, and select the perfect fit for your team.</span>
+                    <span class="lang-content ar">راجع المرشحين المؤهلين مسبقاً، أجر المقابلات، واختر المناسب تماماً لفريقك.</span>
+                </p>
+            </div>
+
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>
+                    <span class="lang-content en active">Smooth Onboarding</span>
+                    <span class="lang-content ar">إدماج سلس</span>
+                </h3>
+                <p>
+                    <span class="lang-content en active">We handle visa processing, documentation, and onboarding to ensure a seamless start for new hires.</span>
+                    <span class="lang-content ar">نتعامل مع معالجة التأشيرات، الوثائق، والإدماج الوظيفي لضمان بداية سلسة للموظفين الجدد.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Employers CTA -->
     <section id="employers" class="cta-section">
         <div class="section-label" style="color: rgba(255, 255, 255, 0.9);">
@@ -1014,6 +1326,243 @@
                     <span class="lang-content en active">Access positions at leading companies that offer competitive compensation and career advancement.</span>
                     <span class="lang-content ar">احصل على مناصب في شركات رائدة تقدم رواتب تنافسية وفرص تقدم وظيفي.</span>
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="section-label">
+            <span class="lang-content en active">What Our Clients Say</span>
+            <span class="lang-content ar">ماذا يقول عملاؤنا</span>
+        </div>
+        <h2>
+            <span class="lang-content en active">Success Stories</span>
+            <span class="lang-content ar">قصص النجاح</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="lang-content en active">Don't just take our word for it - hear from companies and candidates who've succeeded with MoonHire</span>
+            <span class="lang-content ar">لا تأخذ كلامنا فقط - استمع من الشركات والمرشحين الذين نجحوا مع MoonHire</span>
+        </p>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    <span class="lang-content en active">MoonHire transformed our hiring process. We found exceptional talent in half the time, and their assessment methodology ensured perfect cultural fit. Highly recommended!</span>
+                    <span class="lang-content ar">غيّرت MoonHire عملية التوظيف لدينا. وجدنا كفاءات استثنائية في نصف الوقت، ومنهجية التقييم الخاصة بهم ضمنت التوافق الثقافي المثالي. أنصح بهم بشدة!</span>
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨‍💼</div>
+                    <div class="author-info">
+                        <h4>
+                            <span class="lang-content en active">Ahmed Al-Rashid</span>
+                            <span class="lang-content ar">أحمد الراشد</span>
+                        </h4>
+                        <p>
+                            <span class="lang-content en active">HR Director, Tech Solutions Inc.</span>
+                            <span class="lang-content ar">مدير الموارد البشرية، شركة Tech Solutions</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    <span class="lang-content en active">The team at MoonHire guided me through every step of my career transition. They matched me with a role that perfectly aligned with my skills and aspirations. Life-changing experience!</span>
+                    <span class="lang-content ar">فريق MoonHire أرشدني في كل خطوة من انتقالي المهني. ربطوني بوظيفة تتوافق تماماً مع مهاراتي وطموحاتي. تجربة غيرت حياتي!</span>
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👩‍💻</div>
+                    <div class="author-info">
+                        <h4>
+                            <span class="lang-content en active">Sarah Johnson</span>
+                            <span class="lang-content ar">سارة جونسون</span>
+                        </h4>
+                        <p>
+                            <span class="lang-content en active">Senior Software Engineer</span>
+                            <span class="lang-content ar">مهندسة برمجيات أولى</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    <span class="lang-content en active">Outstanding service! From visa processing to onboarding, everything was seamless. MoonHire's global network helped us build a truly diverse and talented team.</span>
+                    <span class="lang-content ar">خدمة متميزة! من معالجة التأشيرات إلى الإدماج الوظيفي، كل شيء كان سلساً. ساعدتنا شبكة MoonHire العالمية في بناء فريق متنوع وموهوب حقاً.</span>
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">👨‍🔧</div>
+                    <div class="author-info">
+                        <h4>
+                            <span class="lang-content en active">Mohammed Al-Otaibi</span>
+                            <span class="lang-content ar">محمد العتيبي</span>
+                        </h4>
+                        <p>
+                            <span class="lang-content en active">CEO, BuildRight Construction</span>
+                            <span class="lang-content ar">الرئيس التنفيذي، شركة BuildRight للإنشاءات</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges Section -->
+    <div class="trust-section">
+        <h3 style="color: var(--text-dark); margin-bottom: 1rem; font-size: 1.5rem;">
+            <span class="lang-content en active">Trusted By Leading Organizations</span>
+            <span class="lang-content ar">موثوق به من قبل المؤسسات الرائدة</span>
+        </h3>
+        <div class="trust-badges">
+            <div class="trust-badge">
+                <div class="trust-badge-icon">✅</div>
+                <p>
+                    <span class="lang-content en active">100% Satisfaction</span>
+                    <span class="lang-content ar">رضا بنسبة 100%</span>
+                </p>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">🏆</div>
+                <p>
+                    <span class="lang-content en active">Award Winning</span>
+                    <span class="lang-content ar">حائز على جوائز</span>
+                </p>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">🔒</div>
+                <p>
+                    <span class="lang-content en active">100% Confidential</span>
+                    <span class="lang-content ar">سرية تامة</span>
+                </p>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">🌍</div>
+                <p>
+                    <span class="lang-content en active">Global Network</span>
+                    <span class="lang-content ar">شبكة عالمية</span>
+                </p>
+            </div>
+            <div class="trust-badge">
+                <div class="trust-badge-icon">⚡</div>
+                <p>
+                    <span class="lang-content en active">Fast Delivery</span>
+                    <span class="lang-content ar">تسليم سريع</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="section-label">
+            <span class="lang-content en active">Got Questions?</span>
+            <span class="lang-content ar">لديك أسئلة؟</span>
+        </div>
+        <h2>
+            <span class="lang-content en active">Frequently Asked Questions</span>
+            <span class="lang-content ar">الأسئلة الشائعة</span>
+        </h2>
+        <p class="section-subtitle">
+            <span class="lang-content en active">Find answers to common questions about our recruitment services and process</span>
+            <span class="lang-content ar">ابحث عن إجابات للأسئلة الشائعة حول خدماتنا وعملية التوظيف</span>
+        </p>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>
+                        <span class="lang-content en active">How long does the typical recruitment process take?</span>
+                        <span class="lang-content ar">كم من الوقت تستغرق عملية التوظيف عادةً؟</span>
+                    </span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <span class="lang-content en active">Our streamlined process typically takes 2-4 weeks from initial consultation to candidate presentation. The exact timeline depends on your specific requirements and the complexity of the role. We prioritize quality and speed to ensure you get the best talent without unnecessary delays.</span>
+                        <span class="lang-content ar">عمليتنا المبسطة عادة ما تستغرق 2-4 أسابيع من الاستشارة الأولية إلى تقديم المرشحين. الجدول الزمني الدقيق يعتمد على متطلباتك المحددة ومدى تعقيد الوظيفة. نعطي الأولوية للجودة والسرعة لضمان حصولك على أفضل الكفاءات دون تأخير غير ضروري.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>
+                        <span class="lang-content en active">What is your pricing structure?</span>
+                        <span class="lang-content ar">ما هو هيكل التسعير الخاص بك؟</span>
+                    </span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <span class="lang-content en active">We offer flexible pricing models including contingency-based (you only pay when we successfully place a candidate) and retainer options for executive searches. Our fees are competitive and transparent, typically ranging from 15-25% of the candidate's first-year salary, depending on the role level and volume of hires. Contact us for a customized quote.</span>
+                        <span class="lang-content ar">نقدم نماذج تسعير مرنة تشمل الأسعار المشروطة (تدفع فقط عندما نضع مرشحاً بنجاح) وخيارات السداد المسبق للبحث عن المديرين التنفيذيين. رسومنا تنافسية وشفافة، تتراوح عادة بين 15-25% من راتب السنة الأولى للمرشح، اعتماداً على مستوى الوظيفة وحجم التوظيف. اتصل بنا للحصول على عرض مخصص.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>
+                        <span class="lang-content en active">Do you handle international placements and visa processing?</span>
+                        <span class="lang-content ar">هل تتعاملون مع التوظيف الدولي ومعالجة التأشيرات؟</span>
+                    </span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <span class="lang-content en active">Yes! We specialize in international recruitment and have extensive experience with visa processing, work permits, and relocation support. Our global network and expertise in immigration procedures ensure a smooth transition for candidates moving across borders.</span>
+                        <span class="lang-content ar">نعم! نحن متخصصون في التوظيف الدولي ولدينا خبرة واسعة في معالجة التأشيرات، تصاريح العمل، ودعم النقل. شبكتنا العالمية وخبرتنا في إجراءات الهجرة تضمن انتقالاً سلساً للمرشحين الذين ينتقلون عبر الحدود.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>
+                        <span class="lang-content en active">What makes your candidate assessment process different?</span>
+                        <span class="lang-content ar">ما الذي يجعل عملية تقييم المرشحين لديكم مختلفة؟</span>
+                    </span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <span class="lang-content en active">We use a multi-dimensional assessment approach that evaluates technical skills, cultural fit, soft skills, and long-term potential. Our methodology combines behavioral interviews, skills testing, reference checks, and psychometric assessments to ensure you get candidates who will thrive in your organization.</span>
+                        <span class="lang-content ar">نستخدم نهج تقييم متعدد الأبعاد يقيم المهارات التقنية، التوافق الثقافي، المهارات الناعمة، والإمكانات طويلة الأجل. منهجيتنا تجمع بين المقابلات السلوكية، اختبارات المهارات، فحص المراجع، والتقييمات النفسية لضمان حصولك على مرشحين سينجحون في مؤسستك.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>
+                        <span class="lang-content en active">What industries do you specialize in?</span>
+                        <span class="lang-content ar">في أي الصناعات تتخصصون؟</span>
+                    </span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <span class="lang-content en active">We work across diverse industries including technology, healthcare, finance, construction, retail, and manufacturing. Our consultants have specialized knowledge in various sectors, allowing us to understand your unique challenges and find candidates with the right industry experience and expertise.</span>
+                        <span class="lang-content ar">نعمل في صناعات متنوعة بما في ذلك التكنولوجيا، الرعاية الصحية، المالية، البناء، التجزئة، والتصنيع. استشاريونا لديهم معرفة متخصصة في قطاعات مختلفة، مما يسمح لنا بفهم تحدياتك الفريدة وإيجاد مرشحين بالخبرة والتخصص الصناعي المناسب.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>
+                        <span class="lang-content en active">What is your guarantee policy?</span>
+                        <span class="lang-content ar">ما هي سياسة الضمان لديكم؟</span>
+                    </span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <span class="lang-content en active">We stand behind every placement with our 100% talent guarantee. If a candidate doesn't work out within the first 90 days, we'll replace them at no additional cost. We're committed to your success and will work tirelessly until you find the perfect fit for your team.</span>
+                        <span class="lang-content ar">نقف وراء كل توظيف بضمان الكفاءات بنسبة 100%. إذا لم ينجح المرشح خلال أول 90 يوماً، سنستبدله دون أي تكلفة إضافية. نحن ملتزمون بنجاحك وسنعمل بلا كلل حتى تجد المناسب تماماً لفريقك.</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1132,6 +1681,24 @@
             } else {
                 header.classList.remove('scrolled');
             }
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
         });
     </script>
 </body>
