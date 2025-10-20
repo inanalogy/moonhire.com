@@ -136,7 +136,16 @@
         }
 
         .logo-icon {
-            font-size: 2rem;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 100%;
+            height: 100%;
         }
 
         .nav-right {
@@ -948,7 +957,26 @@
     <header id="header">
         <nav>
             <a href="#" class="logo">
-                <span class="logo-icon">✨</span>
+                <span class="logo-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Crescent Moon -->
+                        <path d="M65 15C65 32.673 50.673 47 33 47C50.673 47 65 61.327 65 79C65 61.327 79.327 47 97 47C79.327 47 65 32.673 65 15Z" fill="url(#moonGradient)" />
+                        <!-- Stars representing talents -->
+                        <circle cx="25" cy="30" r="3" fill="#F59E0B" />
+                        <circle cx="35" cy="65" r="2.5" fill="#10B981" />
+                        <circle cx="20" cy="75" r="2" fill="#3B82F6" />
+                        <!-- Rising arrow/growth element -->
+                        <path d="M10 85 L15 70 L20 85 M15 70 L15 90" stroke="#2563EB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                        <defs>
+                            <linearGradient id="moonGradient" x1="33" y1="15" x2="97" y2="79" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#3B82F6"/>
+                                <stop offset="50%" stop-color="#2563EB"/>
+                                <stop offset="100%" stop-color="#1E40AF"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
                 <span>MOONHIRE</span>
             </a>
             <div class="nav-right">
